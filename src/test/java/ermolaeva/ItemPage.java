@@ -1,25 +1,42 @@
 package ermolaeva;
 
-import com.codeborne.selenide.CollectionCondition;
-import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
 
-import static com.codeborne.selenide.Selenide.*;
+import java.util.Objects;
 
-// page_url = https://www.avito.ru/nikel/knigi_i_zhurnaly/domain-driven_design_distilled_vaughn_vernon_2639542363
+import static com.codeborne.selenide.Condition.*;
+import static com.codeborne.selenide.Selenide.*;
 public class ItemPage {
-    private final SelenideElement addButton = $x("//div[contains(@class, 'add-favorite')]/button");
-    private final SelenideElement addButton2 = $(".style-header-add-favorite-M7nA2 button[data-marker*=\"favorite-button\"]");
+    private final SelenideElement addFavoriteButton = $x("//div[contains(@class, 'add-favorite')]/button");
+    private final SelenideElement heartIcon = $("div[class*=\"add-favorite\"] [role=\"img\"]");
+    private final SelenideElement favoritesLink = $("a[href*=\"favorites/\"]");
+
+    private final SelenideElement itemName = $(".title-info-title-text");
     public ItemPage(String pageUrl){
         Selenide.open(pageUrl);
     }
-    public void clickOnButton(){
-        //addButton = $$("button[data-marker*=\"favorite-button\"]").filter(Condition.visible).first();
-        addButton.shouldBe(Condition.visible);
-        addButton.click();
+    public String AddToTheFavoriteList(){
+        addFavoriteButton.click();
+        favoritesLink.shouldHave(attributeMatching("href", "https://www.avito.ru/favorites/.*"));
+        return favoritesLink.getAttribute("href");
     }
-    public SelenideElement getAddButton(){
-        return addButton;
+    public ItemPage HeartIconShouldHaveData(String data){
+        heartIcon.shouldHave(attribute("data-icon", data));
+        return this;
+    }
+    public ItemPage AddFavoriteButtonShouldHaveTitle(String data){
+        addFavoriteButton.shouldHave(attribute("title", data));
+        return this;
+    }
+    public ItemPage AddFavoriteButtonShouldHaveText(String text){
+        addFavoriteButton.shouldHave(text(text));
+        return this;
+    }
+    public Boolean checkIfItemIsFavorite(){
+        return Objects.equals(addFavoriteButton.getAttribute("data-is-favorite"), "true");
+    }
+    public String getItemName(){
+        return itemName.getText();
     }
 }
