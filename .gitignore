@@ -28,3 +28,5 @@ replay_pid*
 /target
 /out
 .idea/
+*.bin
+*.lock
