@@ -4,10 +4,7 @@ import com.codeborne.selenide.*;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import static com.codeborne.selenide.Selectors.*;
 import static com.codeborne.selenide.Selenide.*;
-
-// page_url = https://www.avito.ru/favorites
 public class FavoritesListPage {
 
     private final ElementsCollection countFavoriteItemsInCategories = $$x("//div[contains(@class,\"category-content\")]");
