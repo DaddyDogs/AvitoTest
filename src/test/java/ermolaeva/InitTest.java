@@ -12,7 +12,6 @@ import org.openqa.selenium.chrome.ChromeOptions;
 public abstract class InitTest {
     protected Logger logger = LoggerFactory.getLogger(InitTest.class);
     public static void setUp(){
-        //WebDriverManager.chromedriver().setup();
         Configuration.browser = "chrome";
         Configuration.browserVersion = "116.0.5845.111";
         Configuration.browserSize = "1920x1080";
