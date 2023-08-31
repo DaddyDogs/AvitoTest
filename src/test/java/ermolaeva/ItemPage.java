@@ -11,6 +11,7 @@ public class ItemPage {
     private final SelenideElement addFavoriteButton = $x("//div[contains(@class, 'add-favorite')]/button");
     private final SelenideElement heartIcon = $("div[class*=\"add-favorite\"] [role=\"img\"]");
     private final SelenideElement favoritesLink = $("a[href*=\"favorites/\"]");
+    private static final String hrefRegex = "https://www.avito.ru/favorites/.*";
 
     private final SelenideElement itemName = $(".title-info-title-text");
     public ItemPage(String pageUrl){
@@ -18,7 +19,7 @@ public class ItemPage {
     }
     public String AddToTheFavoriteList(){
         addFavoriteButton.click();
-        favoritesLink.shouldHave(attributeMatching("href", "https://www.avito.ru/favorites/.*"));
+        favoritesLink.shouldHave(attributeMatching("href", hrefRegex));
         return favoritesLink.getAttribute("href");
     }
     public ItemPage HeartIconShouldHaveData(String data){
