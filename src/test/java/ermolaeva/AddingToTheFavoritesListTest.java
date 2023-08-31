@@ -41,13 +41,13 @@ public class AddingToTheFavoritesListTest extends InitTest {
         favoritesListPage = new FavoritesListPage(pageURL);
     }
 
-//    @Test
-//    @Order(3)
-//    @DisplayName("Check that item was added to the favorite list")
-//    public void itemIsInTheFavoriteList(){
-//        favoritesListPage.categoriesCountShouldBeGreaterThan(1).
-//                allFavoriteItemsCountShouldBeGreaterThan(0).
-//                categoryFavoriteItemsCountShouldBeGreaterThan(CATEGORY_NAME, 0).
-//                favoriteListShouldContainItem(URL, itemName);
-//    }
+    @Test
+    @Order(3)
+    @DisplayName("Check that item was added to the favorite list")
+    public void itemIsInTheFavoriteList(){
+        favoritesListPage.categoriesCountShouldBeGreaterThan(1).
+                allFavoriteItemsCountShouldBeGreaterThan(0).
+                categoryFavoriteItemsCountShouldBeGreaterThan(CATEGORY_NAME, 0).
+                favoriteListShouldContainItem(URL, itemName);
+    }
 }
